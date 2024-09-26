@@ -9,8 +9,9 @@ public class Interactable : MonoBehaviour
     [SerializeField] private Transform interactionTransform;
     private bool isFocus;
     private bool hasInteracted;
-    public float Radius { get => radius;}
+
     public Transform InteractionTransform { get => interactionTransform; set => interactionTransform = value; }
+    public float Radius { get => radius; set => radius = value; }
 
     public virtual void Interact()
     {
@@ -25,11 +26,12 @@ public class Interactable : MonoBehaviour
         if (isFocus && !hasInteracted)
         {
             float distance = Vector3.Distance(player.position, InteractionTransform.position);  
-            if (distance <= radius)
+            if (distance <= Radius)
             {
                 Interact();
                 hasInteracted = true;
             }
+            Debug.Log(distance);
         }
     }
     public void OnFocused(Transform playerTransform)

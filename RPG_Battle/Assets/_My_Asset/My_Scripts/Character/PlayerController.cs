@@ -8,13 +8,10 @@ using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
-    private const string runParaname = "Run";
     [SerializeField] private Interactable forcus;
     [SerializeField] private LayerMask moventMask;
     [SerializeField] private PlayerMove move;
-    [SerializeField] private Animator playerAnim;
     [SerializeField] private Camera cam;
-    [SerializeField] private float distanceStop;
     private bool isMoving;
 
     public bool IsMoving
@@ -41,7 +38,6 @@ public class PlayerController : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit, 100, moventMask))
             {
                     move.MoveToPoint(hit.point);
-                    playerAnim.SetBool(runParaname,true);
                     RemoveForuc();
             }
         }
@@ -54,7 +50,6 @@ public class PlayerController : MonoBehaviour
                 if (interactable != null)
                 {
                     SetFocus(interactable);
-                    playerAnim.SetBool(runParaname, true);
                 }
             }
         }
