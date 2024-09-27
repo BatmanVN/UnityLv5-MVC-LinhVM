@@ -1,8 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
-using UnityEngine.AI;
+
 
 [RequireComponent(typeof(PlayerMove))]
 
@@ -12,17 +10,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask moventMask;
     [SerializeField] private PlayerMove move;
     [SerializeField] private Camera cam;
-    private bool isMoving;
+    //private bool isMoving;
 
-    public bool IsMoving
-    {
-        get => isMoving;
-        set
-        {
-            if (isMoving == value) return;
-            isMoving = value;
-        }
-    } 
+    //public bool IsMoving
+    //{
+    //    get => isMoving;
+    //    set
+    //    {
+    //        if (isMoving == value) return;
+    //        isMoving = value;
+    //    }
+    //} 
         
 
     private void Start()
@@ -32,6 +30,8 @@ public class PlayerController : MonoBehaviour
     }
     private void Move()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
